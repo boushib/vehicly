@@ -1,6 +1,6 @@
 # vehiclesStoreFrontend
 
-A vehicles online store backend API project, built using .NET core for the **Web Services** class in my master degree at High Tech Rabat.
+A vehicles online store project, for the **Web Services** class in my master degree at High Tech Rabat.
 
 Backend: https://github.com/boushib/vehiclesStoreAPI
 

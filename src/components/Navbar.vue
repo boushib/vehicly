@@ -6,6 +6,7 @@
         <ul class="main-menu">
           <li><router-link to="/">Listings</router-link></li>
           <li><router-link to="/add-vehicle">Add Vehicle</router-link></li>
+          <li><router-link to="/search">Search</router-link></li>
         </ul>
         <router-link to="/login">
           <button class="btn">Login</button>

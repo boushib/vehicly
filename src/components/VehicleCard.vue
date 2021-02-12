@@ -28,6 +28,7 @@
   border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 0 10px rgba($darkGrey, 0.1);
+  cursor: pointer;
   &:not(:last-child) {
     margin-bottom: 16px;
   }

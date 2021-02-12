@@ -13,6 +13,9 @@ export default {
   components: {
     VehicleCard,
   },
+  created() {
+    this.$store.dispatch('getVehicles')
+  },
 }
 </script>
 

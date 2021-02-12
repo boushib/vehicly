@@ -10,6 +10,7 @@
       <div class="content">
         <div class="price">$66777</div>
         <div class="title">Ford Focus</div>
+        <div class="fuel">Diesel</div>
         <div class="year">2018</div>
       </div>
       <div class="footer">
@@ -31,7 +32,7 @@
     margin-bottom: 16px;
   }
   .vehicle__image {
-    width: 220px;
+    width: 280px;
     background-color: #ddd;
     background-size: cover;
     background-position: center;
@@ -43,7 +44,7 @@
     flex-grow: 1;
   }
   .content {
-    padding: 32px;
+    padding: 28px;
   }
   .footer {
     display: flex;

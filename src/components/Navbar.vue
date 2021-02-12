@@ -2,14 +2,14 @@
   <nav>
     <div class="container">
       <div class="nav__inner">
-        <router-link tag="div" class="nav__brand" to="/"
-          ><span>v</span>Store</router-link
-        >
+        <router-link class="nav__brand" to="/"><span>v</span>Store</router-link>
         <ul class="main-menu">
-          <router-link tag="li" to="/">Listings</router-link>
-          <router-link tag="li" to="/add-vehicle">Add Vehicle</router-link>
+          <li><router-link to="/">Listings</router-link></li>
+          <li><router-link to="/add-vehicle">Add Vehicle</router-link></li>
         </ul>
-        <router-link tag="button" class="btn" to="/login">Login</router-link>
+        <router-link to="/login">
+          <button class="btn">Login</button>
+        </router-link>
       </div>
     </div>
   </nav>
@@ -32,6 +32,8 @@ nav {
     justify-content: space-between;
   }
   .nav__brand {
+    display: block;
+    text-decoration: none;
     font-size: 20px;
     font-weight: 500;
     letter-spacing: 0.5px;
@@ -44,10 +46,12 @@ nav {
   .main-menu {
     list-style-type: none;
     display: flex;
-    li {
+    a {
       padding: 20px;
       font-size: 15px;
       position: relative;
+      text-decoration: none;
+      display: inline-block;
       cursor: pointer;
       &.active {
         color: $green;

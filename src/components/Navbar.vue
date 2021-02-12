@@ -18,7 +18,7 @@
 <script>
 export default {
   //
-};
+}
 </script>
 
 <style lang="scss">
@@ -52,7 +52,7 @@ nav {
       &.active {
         color: $green;
         &::after {
-          content: "";
+          content: '';
           position: absolute;
           bottom: 0;
           left: 0;

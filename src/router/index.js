@@ -15,7 +15,10 @@ const routes = [
   {
     path: '/add-vehicle',
     name: 'add_vehicle',
-    component: AddVehicle
+    component: AddVehicle,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/login',
@@ -29,6 +32,12 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
   linkExactActiveClass: 'active'
+})
+
+router.beforeEach((to, from, next) => {
+  const isAuth = !!localStorage.getItem('token')
+  if (to.meta.requiresAuth && !isAuth) next('/login')
+  next()
 })
 
 export default router

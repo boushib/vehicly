@@ -6,9 +6,14 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    token: null,
+    isLoading: false,
     vehicles: []
   },
   mutations: {
+    setIsLoading(state, isLoading) {
+      state.isLoading = isLoading
+    },
     setVehicles(state, vehicles) {
       console.log(vehicles)
       state.vehicles = vehicles
@@ -16,7 +21,9 @@ export default new Vuex.Store({
   },
   actions: {
     async getVehicles({ commit }) {
+      commit('setIsLoading', true)
       const { data: vehicles } = await api.get('/vehicles')
+      commit('setIsLoading', false)
       commit('setVehicles', vehicles)
     }
   },

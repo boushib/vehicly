@@ -3,23 +3,29 @@
     <div
       class="vehicle__image"
       :style="{
-        backgroundImage: `url('https://www.wandaloo.com/files/2019/07/FORD-Focus-ST-2020-Neuve-Maroc-13.jpg')`,
+        backgroundImage: `url('${vehicle.image_url}')`,
       }"
     ></div>
     <div class="vehicle__info">
       <div class="content">
-        <div class="price">$66777</div>
-        <div class="title">Ford Focus</div>
-        <div class="fuel">Diesel</div>
-        <div class="year">2018</div>
+        <div class="price">${{ vehicle.price }}</div>
+        <div class="title">{{ vehicle.make }} {{ vehicle.model }}</div>
+        <div class="fuel">{{ vehicle.fuel }}</div>
+        <div class="year">{{ vehicle.year }}</div>
       </div>
       <div class="footer">
         <div class="date">12:49</div>
-        <div class="location">Casablanca</div>
+        <div class="location">{{ vehicle.location }}</div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: ['vehicle'],
+}
+</script>
 
 <style lang="scss">
 .vehicle__card {
@@ -60,7 +66,8 @@
     color: $green;
     margin-bottom: 12px;
   }
-  .title {
+  .title,
+  .fuel {
     margin-bottom: 10px;
   }
   .date {

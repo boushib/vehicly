@@ -1,17 +1,28 @@
 <template>
   <div class="listings page">
     <div class="container">
-      <vehicle-card v-for="(v, i) in 3" :key="i" />
+      <div class="loading" v-if="isLoading">Loading...</div>
+      <template v-else>
+        <vehicle-card
+          v-for="vehicle in vehicles"
+          :vehicle="vehicle"
+          :key="vehicle.id"
+        />
+      </template>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import VehicleCard from '@/components/VehicleCard.vue'
 export default {
   name: 'home',
   components: {
     VehicleCard,
+  },
+  computed: {
+    ...mapState(['isLoading', 'vehicles']),
   },
   created() {
     this.$store.dispatch('getVehicles')

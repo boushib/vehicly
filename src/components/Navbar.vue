@@ -30,12 +30,14 @@ nav {
   .nav__brand {
     font-size: 17px;
     font-weight: bold;
+    cursor: pointer;
   }
   .main-menu {
     list-style-type: none;
     display: flex;
     li {
       padding: 20px;
+      cursor: pointer;
     }
   }
 }

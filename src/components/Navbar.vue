@@ -24,6 +24,7 @@ export default {
 
 <style lang="scss">
 nav {
+  height: 60px;
   background-color: #fff;
   border: 1px solid rgba($darkGrey, 0.1);
   user-select: none;

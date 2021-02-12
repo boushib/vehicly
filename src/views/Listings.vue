@@ -32,7 +32,7 @@ export default {
 
 <style lang="scss">
 .listings {
-  max-width: 720px;
+  max-width: 800px;
   margin: 0 auto;
 }
 </style>

@@ -22,14 +22,18 @@ export default {
 <style lang="scss">
 nav {
   background-color: #fff;
+  border: 1px solid rgba($darkGrey, 0.1);
+  user-select: none;
   .nav__inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
   .nav__brand {
-    font-size: 17px;
-    font-weight: bold;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: $darkGrey;
     cursor: pointer;
   }
   .main-menu {
@@ -37,7 +41,12 @@ nav {
     display: flex;
     li {
       padding: 20px;
+      font-size: 15px;
       cursor: pointer;
+      &.active {
+        color: $green;
+        border-bottom: 2px solid $green;
+      }
     }
   }
 }

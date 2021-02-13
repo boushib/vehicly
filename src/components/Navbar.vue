@@ -14,7 +14,9 @@
           <li><router-link to="/search">Search</router-link></li>
         </ul>
         <div class="user" v-if="isAuth">
-          <div class="username">{{ username }}</div>
+          <div class="username">
+            Logged in as <b>{{ username }}</b>
+          </div>
           <div class="logout" @click="logout">Logout</div>
         </div>
         <router-link to="/login" v-else>

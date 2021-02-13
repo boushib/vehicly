@@ -7,33 +7,26 @@
       }"
     ></div>
     <div class="vehicle__info">
-      <div class="content">
-        <div class="price">${{ vehicle.price }}</div>
-        <div class="title">
-          {{ vehicle.make }} {{ vehicle.model }} - {{ vehicle.year }}
-        </div>
-        <div class="fuel">
-          <gas-station-icon />
-          {{ vehicle.fuel }}
-        </div>
-        <div class="gear-box">
-          <gear-icon />
-          {{ vehicle.gear_box }}
-        </div>
-        <div class="horse-power">
-          <power-icon />
-          {{ vehicle.hp }} hp
-        </div>
+      <div class="time">{{ vehicle.created_at | timeAgo }}</div>
+      <div class="item price">${{ vehicle.price }}</div>
+      <div class="title">
+        {{ vehicle.make }} {{ vehicle.model }} - {{ vehicle.year }}
       </div>
-      <div class="footer">
-        <div class="time">
-          <time-icon />
-          {{ vehicle.created_at | timeAgo }}
-        </div>
-        <div class="location">
-          <location-icon />
-          {{ vehicle.location }}
-        </div>
+      <div class="fuel">
+        <gas-station-icon />
+        {{ vehicle.fuel }}
+      </div>
+      <div class="gear-box">
+        <gear-icon />
+        {{ vehicle.gear_box }}
+      </div>
+      <div class="horse-power">
+        <power-icon />
+        {{ vehicle.hp }} hp
+      </div>
+      <div class="location">
+        <location-icon />
+        {{ vehicle.location }}
       </div>
     </div>
   </div>
@@ -75,62 +68,45 @@ export default {
     background-position: center;
   }
   .vehicle__info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex-grow: 1;
-  }
-  .content {
     padding: 28px;
-  }
-  .footer {
-    display: flex;
-    align-items: center;
-    padding: 10px 28px;
-    border-top: 1px solid #ebebeb;
-    .time,
-    .location {
+    flex-grow: 1;
+    position: relative;
+    & > div {
       display: flex;
       align-items: center;
       color: #9e9e9e;
       font-size: 16px;
-    }
-    .time {
-      margin-right: 20px;
-    }
-  }
-  .fuel,
-  .location,
-  .gear-box,
-  .horse-power,
-  .time {
-    display: flex;
-    align-items: center;
-    color: #9e9e9e;
-    font-size: 16px;
-    svg {
-      margin-right: 4px;
-      width: 16px;
-      height: 16px;
-      path {
-        fill: #bbb;
+      &:not(:last-child) {
+        margin-bottom: 12px;
+      }
+      &.time {
+        position: absolute;
+        top: 28px;
+        right: 28px;
+      }
+      &.title,
+      &.price {
+        font-size: 20px;
+      }
+      &.title {
+        font-weight: 400;
+      }
+      &.price {
+        font-weight: 600;
+        color: $green;
+      }
+      &.time {
+        color: #bebebe;
+      }
+      svg {
+        margin-right: 4px;
+        width: 16px;
+        height: 16px;
+        path {
+          fill: #bbb;
+        }
       }
     }
-  }
-  .title {
-    font-size: 20px;
-    font-weight: 400;
-    margin-bottom: 12px;
-  }
-  .price {
-    font-size: 20px;
-    font-weight: 600;
-    color: $green;
-    margin-bottom: 12px;
-  }
-  .fuel,
-  .gear-box {
-    margin-bottom: 12px;
   }
 }
 </style>

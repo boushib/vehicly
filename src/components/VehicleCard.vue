@@ -13,28 +13,26 @@
           {{ vehicle.make }} {{ vehicle.model }} - {{ vehicle.year }}
         </div>
         <div class="fuel">
-          <img src="@/assets/img/gas-station.svg" alt="fuel" />{{
-            vehicle.fuel
-          }}
+          <gas-station-icon />
+          {{ vehicle.fuel }}
         </div>
         <div class="gear-box">
-          <img src="@/assets/img/gear.svg" alt="gear box" />
+          <gear-icon />
           {{ vehicle.gear_box }}
         </div>
         <div class="horse-power">
-          <img src="@/assets/img/power.svg" alt="horse power" />
+          <power-icon />
           {{ vehicle.hp }} hp
         </div>
       </div>
       <div class="footer">
         <div class="time">
-          <img src="@/assets/img/time.svg" alt="time" />
-          {{ new Date(vehicle.created_at).toLocaleDateString() }}
+          <time-icon />
+          {{ vehicle.created_at | timeAgo }}
         </div>
         <div class="location">
-          <img src="@/assets/img/location-pin.svg" alt="location" />{{
-            vehicle.location
-          }}
+          <location-icon />
+          {{ vehicle.location }}
         </div>
       </div>
     </div>
@@ -42,8 +40,20 @@
 </template>
 
 <script>
+import GasStationIcon from '@/components/icons/GasStation.vue'
+import GearIcon from '@/components/icons/Gear.vue'
+import LocationIcon from '@/components/icons/Location.vue'
+import PowerIcon from '@/components/icons/Power.vue'
+import TimeIcon from '@/components/icons/Time.vue'
 export default {
   props: ['vehicle'],
+  components: {
+    GasStationIcon,
+    GearIcon,
+    LocationIcon,
+    PowerIcon,
+    TimeIcon,
+  },
 }
 </script>
 
@@ -51,15 +61,15 @@ export default {
 .vehicle__card {
   display: flex;
   background-color: #fff;
-  border-radius: 6px;
+  border-radius: 4px;
   overflow: hidden;
-  box-shadow: 0 0 10px rgba($darkGrey, 0.06);
+  box-shadow: 0 0 10px rgba($grey, 0.06);
   cursor: pointer;
   &:not(:last-child) {
     margin-bottom: 16px;
   }
   .vehicle__image {
-    width: 280px;
+    width: 260px;
     background-color: #ddd;
     background-size: cover;
     background-position: center;
@@ -84,44 +94,42 @@ export default {
       align-items: center;
       color: #9e9e9e;
       font-size: 16px;
-      img {
-        margin-right: 4px;
-      }
     }
     .time {
       margin-right: 20px;
-      img {
-        width: 18px;
+    }
+  }
+  .fuel,
+  .location,
+  .gear-box,
+  .horse-power,
+  .time {
+    display: flex;
+    align-items: center;
+    color: #9e9e9e;
+    font-size: 16px;
+    svg {
+      margin-right: 4px;
+      width: 16px;
+      height: 16px;
+      path {
+        fill: #bbb;
       }
     }
   }
   .title {
     font-size: 20px;
-    font-weight: 500;
-    margin-bottom: 12px;
-  }
-  .fuel,
-  .location,
-  .gear-box,
-  .horse-power {
-    display: flex;
-    align-items: center;
-    color: #9e9e9e;
-    font-size: 16px;
-    img {
-      margin-right: 4px;
-      width: 18px;
-    }
-  }
-  .fuel,
-  .gear-box {
+    font-weight: 400;
     margin-bottom: 12px;
   }
   .price {
     font-size: 20px;
-    font-weight: 900;
-    letter-spacing: 0.5px;
+    font-weight: 600;
     color: $green;
+    margin-bottom: 12px;
+  }
+  .fuel,
+  .gear-box {
     margin-bottom: 12px;
   }
 }

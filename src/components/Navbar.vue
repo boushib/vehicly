@@ -45,7 +45,7 @@ export default {
 nav {
   height: 60px;
   background-color: #fff;
-  border: 1px solid rgba($darkGrey, 0.1);
+  border: 1px solid rgba($grey, 0.1);
   user-select: none;
   .nav__inner {
     display: flex;
@@ -58,7 +58,6 @@ nav {
     font-size: 20px;
     font-weight: 500;
     letter-spacing: 0.5px;
-    color: $darkGrey;
     cursor: pointer;
     span {
       color: $green;

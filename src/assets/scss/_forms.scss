@@ -4,7 +4,6 @@ input {
   &[type='password'],
   &[type='number'] {
     display: block;
-    border: none;
     outline: none;
     padding: 12px 20px;
     border-radius: 4px;
@@ -17,6 +16,37 @@ input {
     &:focus {
       border-color: #ccc;
     }
+  }
+}
+
+select {
+  display: block;
+  border: 1px solid #dfdfdf;
+  outline: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+  width: 320px;
+  max-width: 100%;
+  margin-bottom: 16px;
+  background-color: #fff;
+  font-size: 16px;
+  -moz-appearance: none; /* Firefox */
+  -webkit-appearance: none; /* Safari and Chrome */
+  appearance: none;
+  cursor: pointer;
+}
+
+.select {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 18px;
+    right: 16px;
+    height: 0;
+    width: 0;
+    border: 6px solid transparent;
+    border-top-color: #a9a9a9;
   }
 }
 

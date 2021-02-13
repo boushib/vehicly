@@ -83,7 +83,7 @@ export default {
       display: flex;
       align-items: center;
       color: #9e9e9e;
-      font-size: 15px;
+      font-size: 16px;
       img {
         margin-right: 4px;
       }
@@ -107,7 +107,7 @@ export default {
     display: flex;
     align-items: center;
     color: #9e9e9e;
-    font-size: 15px;
+    font-size: 16px;
     img {
       margin-right: 4px;
       width: 18px;

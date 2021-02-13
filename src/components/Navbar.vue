@@ -66,8 +66,8 @@ nav {
     list-style-type: none;
     display: flex;
     a {
-      padding: 20px;
-      font-size: 15px;
+      padding: 19px;
+      font-size: 16px;
       position: relative;
       text-decoration: none;
       display: inline-block;
@@ -88,7 +88,7 @@ nav {
   }
   .user {
     display: flex;
-    font-size: 15px;
+    font-size: 16px;
   }
   .username {
     margin-right: 16px;

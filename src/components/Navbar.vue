@@ -5,10 +5,19 @@
         <router-link class="nav__brand" to="/"><span>v</span>Store</router-link>
         <ul class="main-menu">
           <li><router-link to="/">Listings</router-link></li>
+          <li>
+            <router-link v-if="isAuth" to="/my-listings"
+              >My Listings</router-link
+            >
+          </li>
           <li><router-link to="/add-vehicle">Add Vehicle</router-link></li>
           <li><router-link to="/search">Search</router-link></li>
         </ul>
-        <router-link to="/login">
+        <div class="user" v-if="isAuth">
+          <div class="username">{{ username }}</div>
+          <div class="logout" @click="logout">Logout</div>
+        </div>
+        <router-link to="/login" v-else>
           <button class="btn">Login</button>
         </router-link>
       </div>
@@ -17,8 +26,16 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-  //
+  computed: {
+    ...mapGetters(['isAuth', 'username']),
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('auth/logout')
+    },
+  },
 }
 </script>
 
@@ -68,6 +85,17 @@ nav {
         }
       }
     }
+  }
+  .user {
+    display: flex;
+    font-size: 15px;
+  }
+  .username {
+    margin-right: 16px;
+  }
+  .logout {
+    color: $red;
+    cursor: pointer;
   }
 }
 </style>

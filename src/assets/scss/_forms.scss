@@ -1,3 +1,24 @@
+input {
+  &[type='text'],
+  &[type='email'],
+  &[type='password'],
+  &[type='number'] {
+    display: block;
+    border: none;
+    outline: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    width: 320px;
+    max-width: 100%;
+    margin-bottom: 16px;
+    background-color: #fff;
+    border: 1px solid #fff;
+    &:focus {
+      border-color: #ccc;
+    }
+  }
+}
+
 .btn {
   border: none;
   outline: none;

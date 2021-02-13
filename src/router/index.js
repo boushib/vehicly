@@ -16,6 +16,7 @@ const routes = [
     path: '/add-vehicle',
     name: 'add_vehicle',
     component: AddVehicle,
+    beforeEnter: guard,
     meta: {
       requiresAuth: true
     }
@@ -34,10 +35,10 @@ const router = new VueRouter({
   linkExactActiveClass: 'active'
 })
 
-router.beforeEach((to, from, next) => {
+const guard = (to, from, next) => {
   const isAuth = !!localStorage.getItem('token')
-  if (to.meta.requiresAuth && !isAuth) next('/login')
-  next()
-})
+  if (isAuth) next()
+  next('/login')
+}
 
 export default router

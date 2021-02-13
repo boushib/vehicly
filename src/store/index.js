@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import api from '@/api'
+import auth from './modules/auth'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    token: null,
     isLoading: false,
     vehicles: []
   },
@@ -29,8 +29,13 @@ export default new Vuex.Store({
   },
   getters: {
     isAuth(state) {
-      return state.token || localStorage.getItem('token')
+      return state.auth.accessToken || localStorage.getItem('accessToken')
+    },
+    username(state) {
+      return state.auth.username || localStorage.getItem('username')
     }
   },
-  modules: {}
+  modules: {
+    auth
+  }
 })

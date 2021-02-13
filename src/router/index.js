@@ -7,6 +7,12 @@ import Login from '@/views/Login.vue'
 
 Vue.use(VueRouter)
 
+const guard = (to, from, next) => {
+  const isAuth = !!localStorage.getItem('accessToken')
+  if (isAuth) return next()
+  next('/login')
+}
+
 const routes = [
   {
     path: '/',
@@ -22,10 +28,7 @@ const routes = [
     path: '/add-vehicle',
     name: 'add_vehicle',
     component: AddVehicle,
-    beforeEnter: guard,
-    meta: {
-      requiresAuth: true
-    }
+    beforeEnter: (to, from, next) => guard(to, from, next)
   },
   {
     path: '/login',
@@ -40,11 +43,5 @@ const router = new VueRouter({
   routes,
   linkExactActiveClass: 'active'
 })
-
-const guard = (to, from, next) => {
-  const isAuth = !!localStorage.getItem('token')
-  if (isAuth) next()
-  next('/login')
-}
 
 export default router

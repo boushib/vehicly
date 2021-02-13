@@ -55,12 +55,13 @@ nav {
   .nav__brand {
     display: block;
     text-decoration: none;
-    font-size: 20px;
-    font-weight: 500;
+    font-size: 24px;
+    font-weight: 600;
     letter-spacing: 0.5px;
     cursor: pointer;
     span {
       color: $green;
+      font-weight: 600;
     }
   }
   .main-menu {

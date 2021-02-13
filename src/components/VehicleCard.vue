@@ -62,10 +62,13 @@ export default {
     margin-bottom: 16px;
   }
   .vehicle__image {
-    width: 260px;
+    width: 300px;
     background-color: #ddd;
     background-size: cover;
     background-position: center;
+    transform: skew(-4deg);
+    position: relative;
+    left: -10px;
   }
   .vehicle__info {
     padding: 28px;

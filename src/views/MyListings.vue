@@ -3,11 +3,17 @@
     <div class="container">
       <div class="loading" v-if="isLoading">Loading...</div>
       <template v-else>
-        <vehicle-card
-          v-for="vehicle in vehicles"
-          :vehicle="vehicle"
-          :key="vehicle.id"
-        />
+        <template v-if="myVehicles.length">
+          <vehicle-card
+            v-for="vehicle in myVehicles"
+            :vehicle="vehicle"
+            :key="vehicle.id"
+          />
+        </template>
+        <template v-else>
+          <h3>You have no listings yet!</h3>
+          <router-link to="/add-vehicle">Add a new vehicle?</router-link>
+        </template>
       </template>
     </div>
   </div>
@@ -22,10 +28,10 @@ export default {
     VehicleCard,
   },
   computed: {
-    ...mapState(['isLoading', 'vehicles']),
+    ...mapState(['isLoading', 'myVehicles']),
   },
   created() {
-    this.$store.dispatch('getListings')
+    this.$store.dispatch('getMyListings')
   },
 }
 </script>

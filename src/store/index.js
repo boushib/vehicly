@@ -8,23 +8,33 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     isLoading: false,
-    vehicles: []
+    vehicles: [],
+    myVehicles: []
   },
   mutations: {
     setIsLoading(state, isLoading) {
       state.isLoading = isLoading
     },
     setVehicles(state, vehicles) {
-      console.log(vehicles)
       state.vehicles = vehicles
+    },
+    setMyVehicles(state, vehicles) {
+      state.myVehicles = vehicles
     }
   },
   actions: {
-    async getVehicles({ commit }) {
+    async getListings({ commit }) {
       commit('setIsLoading', true)
       const { data: vehicles } = await api.get('/vehicles')
       commit('setIsLoading', false)
       commit('setVehicles', vehicles)
+    },
+    async getMyListings({ commit }) {
+      commit('setIsLoading', true)
+      //const { data: vehicles } = await api.get('/my-vehicles')
+      const vehicles = []
+      commit('setIsLoading', false)
+      commit('setMyVehicles', vehicles)
     }
   },
   getters: {

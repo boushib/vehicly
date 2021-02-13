@@ -11,7 +11,7 @@
             >
           </li>
           <li><router-link to="/add-vehicle">Add Vehicle</router-link></li>
-          <li><router-link to="/search">Search</router-link></li>
+          <!-- <li><router-link to="/search">Search</router-link></li> -->
         </ul>
         <div class="user" v-if="isAuth">
           <div class="username">

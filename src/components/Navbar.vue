@@ -5,11 +5,11 @@
         <router-link class="nav__brand" to="/"><span>v</span>Store</router-link>
         <ul class="main-menu">
           <li><router-link to="/">Listings</router-link></li>
-          <li>
+          <!-- <li>
             <router-link v-if="isAuth" to="/my-listings"
               >My Listings</router-link
             >
-          </li>
+          </li> -->
           <li><router-link to="/add-vehicle">Add Vehicle</router-link></li>
           <!-- <li><router-link to="/search">Search</router-link></li> -->
         </ul>

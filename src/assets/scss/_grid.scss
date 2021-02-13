@@ -3,3 +3,11 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  .col {
+    margin-right: 20px;
+  }
+}

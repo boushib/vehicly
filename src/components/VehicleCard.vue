@@ -71,7 +71,7 @@ export default {
     left: -10px;
   }
   .vehicle__info {
-    padding: 28px;
+    padding: 24px;
     flex-grow: 1;
     position: relative;
     & > div {
@@ -84,8 +84,9 @@ export default {
       }
       &.time {
         position: absolute;
-        top: 28px;
-        right: 28px;
+        top: 24px;
+        right: 24px;
+        line-height: 1;
       }
       &.title,
       &.price {

@@ -38,9 +38,13 @@ export default new Vuex.Store({
       commit('setMyVehicles', vehicles)
     },
     async addListing({ commit }, vehicle) {
-      const { data } = await api.post('/vehicles', vehicle)
-      console.log(data)
-      router.push('/')
+      try {
+        const { data } = await api.post('/vehicles', vehicle)
+        console.log(data)
+        router.push('/')
+      } catch (err) {
+        console.log(err.response)
+      }
     }
   },
   getters: {

@@ -40,7 +40,7 @@
             <input
               type="text"
               placeholder="Image URL"
-              v-model="vehicle.image_url"
+              v-model="vehicle.imageURL"
               required
             />
             <input
@@ -80,6 +80,17 @@ export default {
   data() {
     return {
       vehicle: {
+        // make: 'Ford',
+        // model: 'Fiesta',
+        // fuel: 'Gasoline',
+        // year: 2014,
+        // price: 9000,
+        // imageURL:
+        //   'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/2017-ford-fiesta-1557785069.jpg',
+        // location: 'Settat',
+        // phone: '+212634342610',
+        // horsepower: 7,
+        // gearBox: 'Automatic',
         make: null,
         model: null,
         fuel: null,
@@ -95,7 +106,7 @@ export default {
   },
   methods: {
     addListing() {
-      console.log('adding listing ...')
+      this.$store.dispatch('addListing', this.vehicle)
     },
   },
 }

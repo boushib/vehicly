@@ -10,7 +10,7 @@ Vue.config.productionTip = false
 
 Vue.filter('timeAgo', function(ts) {
   const now = new Date()
-  const seconds = Math.floor(
+  const seconds = Math.ceil(
     (now - new Date(ts) + now.getTimezoneOffset() * 60 * 1000) / 1000
   )
   const minute = 60

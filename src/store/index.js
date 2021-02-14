@@ -47,6 +47,16 @@ export default new Vuex.Store({
         console.log(err.response)
       }
     },
+    async deleteListing({ dispatch, commit }, id) {
+      try {
+        commit('setIsLoading', true)
+        await api.delete(`/vehicles/${id}`)
+        dispatch('getListings')
+        commit('setIsLoading', false)
+      } catch (err) {
+        console.log(err.response)
+      }
+    },
     async uploadFile({ commit }, file) {
       commit('setIsLoading', true)
       try {

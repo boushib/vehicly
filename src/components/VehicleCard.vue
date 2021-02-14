@@ -1,5 +1,9 @@
 <template>
   <div class="vehicle__card">
+    <!-- TODO: make it possible onlt to delete their own listings -->
+    <div class="delete" @click="deleteListing" v-if="isAuth">
+      <delete-icon />
+    </div>
     <div
       class="vehicle__image"
       :style="{
@@ -38,14 +42,21 @@ import GearIcon from '@/components/icons/Gear.vue'
 import LocationIcon from '@/components/icons/Location.vue'
 import PowerIcon from '@/components/icons/Power.vue'
 import TimeIcon from '@/components/icons/Time.vue'
+import DeleteIcon from '@/components/icons/Delete.vue'
 export default {
-  props: ['vehicle'],
+  props: ['vehicle', 'isAuth'],
   components: {
     GasStationIcon,
     GearIcon,
     LocationIcon,
     PowerIcon,
     TimeIcon,
+    DeleteIcon,
+  },
+  methods: {
+    deleteListing() {
+      this.$store.dispatch('deleteListing', this.vehicle.id)
+    },
   },
 }
 </script>
@@ -57,9 +68,34 @@ export default {
   border-radius: 4px;
   overflow: hidden;
   box-shadow: 0 0 10px rgba($grey, 0.06);
+  position: relative;
   cursor: pointer;
   &:not(:last-child) {
     margin-bottom: 16px;
+  }
+  &:hover {
+    .delete {
+      opacity: 1;
+    }
+  }
+  .delete {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    height: 36px;
+    width: 36px;
+    background-color: $red;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    svg {
+      width: 14px;
+      height: 14px;
+    }
   }
   .vehicle__image {
     width: 300px;

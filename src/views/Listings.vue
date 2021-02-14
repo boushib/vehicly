@@ -6,6 +6,7 @@
         <vehicle-card
           v-for="vehicle in vehicles"
           :vehicle="vehicle"
+          :isAuth="isAuth"
           :key="vehicle.id"
         />
       </template>
@@ -14,7 +15,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import VehicleCard from '@/components/VehicleCard.vue'
 export default {
   name: 'home',
@@ -23,6 +24,7 @@ export default {
   },
   computed: {
     ...mapState(['isLoading', 'vehicles']),
+    ...mapGetters(['isAuth']),
   },
   created() {
     this.$store.dispatch('getListings')

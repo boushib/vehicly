@@ -47,6 +47,11 @@ nav {
   background-color: #fff;
   border: 1px solid rgba($grey, 0.1);
   user-select: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 9999;
   .nav__inner {
     display: flex;
     align-items: center;

@@ -28,7 +28,8 @@ const auth = {
         router.push('/')
       } catch (err) {
         console.log(err.response)
-        if (err.response.status === 401) return 'Email & password do not match'
+        if (err.response.status === 401)
+          return 'Username & password do not match'
       }
     },
     logout({ commit }) {

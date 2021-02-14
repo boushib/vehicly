@@ -39,9 +39,30 @@ export default new Vuex.Store({
     },
     async addListing({ commit }, vehicle) {
       try {
-        const { data } = await api.post('/vehicles', vehicle)
-        console.log(data)
+        commit('setIsLoading', true)
+        await api.post('/vehicles', vehicle)
+        commit('setIsLoading', false)
         router.push('/')
+      } catch (err) {
+        console.log(err.response)
+      }
+    },
+    async uploadFile({ commit }, file) {
+      commit('setIsLoading', true)
+      try {
+        const fd = new FormData()
+        fd.append('file', file)
+        const config = {
+          headers: {
+            'content-type': 'multipart/form-data'
+          }
+        }
+        const { data: imageURL } = await api.post(
+          '/vehicles/upload',
+          fd,
+          config
+        )
+        return imageURL
       } catch (err) {
         console.log(err.response)
       }

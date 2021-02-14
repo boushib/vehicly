@@ -39,9 +39,8 @@
           </div>
           <div class="col">
             <input
-              type="text"
-              placeholder="Image URL"
-              v-model="vehicle.imageURL"
+              type="file"
+              @change="imageFile = $event.target.files[0]"
               required
             />
             <input
@@ -71,43 +70,52 @@
             </div>
           </div>
         </div>
-        <button class="btn">Submit</button>
+        <button v-if="isLoading" class="btn" type="button" disabled>
+          Saving vehicle...
+        </button>
+        <button v-else class="btn">Submit</button>
       </form>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   data() {
     return {
       vehicle: {
-        // make: 'Ford',
-        // model: 'Fiesta',
-        // fuel: 'Gasoline',
-        // year: 2014,
-        // price: 9000,
-        // imageURL:
-        //   'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/2017-ford-fiesta-1557785069.jpg',
-        // location: 'Settat',
-        // phone: '+212634342610',
-        // horsepower: 7,
-        // gearBox: 'Automatic',
-        make: null,
-        model: null,
-        fuel: '',
-        year: null,
-        price: null,
-        imageURL: null,
-        location: null,
-        phone: null,
-        horsepower: null,
-        gearBox: '',
+        make: 'Ford',
+        model: 'Fiesta',
+        fuel: 'Gasoline',
+        year: 2014,
+        price: 9000,
+        location: 'Settat',
+        phone: '+212634342610',
+        horsepower: 7,
+        gearBox: 'Automatic',
+        /////
+        //   make: null,
+        //   model: null,
+        //   fuel: '',
+        //   year: null,
+        //   price: null,
+        //   imageURL: null,
+        //   location: null,
+        //   phone: null,
+        //   horsepower: null,
+        //   gearBox: '',
       },
+      imageFile: null,
     }
   },
+  computed: {
+    ...mapState(['isLoading']),
+  },
   methods: {
-    addListing() {
+    async addListing() {
+      const imageURL = await this.$store.dispatch('uploadFile', this.imageFile)
+      this.vehicle.imageURL = imageURL
       this.$store.dispatch('addListing', this.vehicle)
     },
   },

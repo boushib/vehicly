@@ -12,11 +12,13 @@
     <div
       class="vehicle__image"
       :style="{
-        backgroundImage: `url('${vehicle.image_url}')`,
+        backgroundImage: `url('${vehicle.imageURL}')`,
       }"
     ></div>
     <div class="vehicle__info">
-      <div class="time">{{ vehicle.created_at | timeAgo }}</div>
+      <div class="time">
+        {{ (vehicle.updatedAt || vehicle.createdAt) | timeAgo }}
+      </div>
       <div class="item price">${{ vehicle.price }}</div>
       <div class="title">
         {{ vehicle.make }} {{ vehicle.model }} - {{ vehicle.year }}
@@ -27,11 +29,11 @@
       </div>
       <div class="gear-box">
         <gear-icon />
-        {{ vehicle.gear_box }}
+        {{ vehicle.gearBox }}
       </div>
       <div class="horse-power">
         <power-icon />
-        {{ vehicle.hp }} hp
+        {{ vehicle.horsepower }} hp
       </div>
       <div class="location">
         <location-icon />

@@ -9,7 +9,10 @@ import './assets/scss/app.scss'
 Vue.config.productionTip = false
 
 Vue.filter('timeAgo', function(ts) {
-  const seconds = Math.floor((new Date() - new Date(ts)) / 1000)
+  const now = new Date()
+  const seconds = Math.floor(
+    (now - new Date(ts) + now.getTimezoneOffset() * 60 * 1000) / 1000
+  )
   const minute = 60
   const hour = 60 * minute
   const day = 24 * hour
@@ -17,7 +20,7 @@ Vue.filter('timeAgo', function(ts) {
   const year = 365 * day
   if (seconds > year) {
     const interval = Math.floor(seconds / year)
-    return `${interval} year${interval > 1 ? 's' : ''} ago`
+    return `${interval}year${interval > 1 ? 's' : ''} ago`
   }
   if (seconds > month) {
     const interval = Math.floor(seconds / month)

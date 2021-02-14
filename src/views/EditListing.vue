@@ -104,20 +104,12 @@ export default {
       //this.vehicle.imageURL = imageURL
       this.$store.dispatch('updateListing', this.vehicle)
     },
-    populateListing(vehicle) {
-      const { gear_box, hp, image_url } = vehicle
-      this.vehicle = {
-        ...vehicle,
-        gearBox: gear_box,
-        horsepower: hp,
-        imageURL: image_url,
-      }
-    },
   },
   async created() {
     const { id } = this.$route.params
     const vehicle = await this.$store.dispatch('getListing', id)
-    this.populateListing(vehicle)
+    console.log(vehicle)
+    this.vehicle = { ...vehicle }
   },
 }
 </script>

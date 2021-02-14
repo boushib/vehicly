@@ -12,7 +12,7 @@
         </template>
         <template v-else>
           <h3>You have no listings yet!</h3>
-          <router-link to="/add-vehicle">Add a new vehicle?</router-link>
+          <router-link to="/listings/add">Add a new vehicle?</router-link>
         </template>
       </template>
     </div>

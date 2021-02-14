@@ -1,8 +1,8 @@
 <template>
-  <div class="add-vehicle page">
+  <div class="edit-vehicle page">
     <div class="container">
-      <h1>Add a new vehicle</h1>
-      <form @submit.prevent="addListing">
+      <h1>Update vehicle</h1>
+      <form @submit.prevent="updateListing">
         <div class="grid">
           <div class="col">
             <input
@@ -38,11 +38,7 @@
             />
           </div>
           <div class="col">
-            <input
-              type="file"
-              @change="imageFile = $event.target.files[0]"
-              required
-            />
+            <input type="file" @change="imageFile = $event.target.files[0]" />
             <input
               type="text"
               placeholder="Location"
@@ -85,15 +81,6 @@ export default {
   data() {
     return {
       vehicle: {
-        // make: 'Ford',
-        // model: 'Fiesta',
-        // fuel: 'Gasoline',
-        // year: 2014,
-        // price: 9000,
-        // location: 'Settat',
-        // phone: '+212634342610',
-        // horsepower: 7,
-        // gearBox: 'Automatic',
         make: null,
         model: null,
         fuel: '',
@@ -112,11 +99,25 @@ export default {
     ...mapState(['isLoading']),
   },
   methods: {
-    async addListing() {
-      const imageURL = await this.$store.dispatch('uploadFile', this.imageFile)
-      this.vehicle.imageURL = imageURL
-      this.$store.dispatch('addListing', this.vehicle)
+    async updateListing() {
+      //const imageURL = await this.$store.dispatch('uploadFile', this.imageFile)
+      //this.vehicle.imageURL = imageURL
+      this.$store.dispatch('updateListing', this.vehicle)
     },
+    populateListing(vehicle) {
+      const { gear_box, hp, image_url } = vehicle
+      this.vehicle = {
+        ...vehicle,
+        gearBox: gear_box,
+        horsepower: hp,
+        imageURL: image_url,
+      }
+    },
+  },
+  async created() {
+    const { id } = this.$route.params
+    const vehicle = await this.$store.dispatch('getListing', id)
+    this.populateListing(vehicle)
   },
 }
 </script>

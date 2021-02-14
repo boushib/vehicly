@@ -1,8 +1,13 @@
 <template>
   <div class="vehicle__card">
     <!-- TODO: make it possible onlt to delete their own listings -->
-    <div class="delete" @click="deleteListing" v-if="isAuth">
-      <delete-icon />
+    <div class="controls" v-if="isAuth">
+      <div class="control edit" @click="editListing">
+        <edit-icon />
+      </div>
+      <div class="control delete" @click="deleteListing">
+        <delete-icon />
+      </div>
     </div>
     <div
       class="vehicle__image"
@@ -42,6 +47,7 @@ import GearIcon from '@/components/icons/Gear.vue'
 import LocationIcon from '@/components/icons/Location.vue'
 import PowerIcon from '@/components/icons/Power.vue'
 import TimeIcon from '@/components/icons/Time.vue'
+import EditIcon from '@/components/icons/Edit.vue'
 import DeleteIcon from '@/components/icons/Delete.vue'
 export default {
   props: ['vehicle', 'isAuth'],
@@ -51,9 +57,13 @@ export default {
     LocationIcon,
     PowerIcon,
     TimeIcon,
+    EditIcon,
     DeleteIcon,
   },
   methods: {
+    editListing() {
+      this.$router.push(`/listings/${this.vehicle.id}/edit`)
+    },
     deleteListing() {
       this.$store.dispatch('deleteListing', this.vehicle.id)
     },
@@ -74,27 +84,38 @@ export default {
     margin-bottom: 16px;
   }
   &:hover {
-    .delete {
+    .controls {
       opacity: 1;
     }
   }
-  .delete {
+  .controls {
     position: absolute;
     top: 16px;
     right: 16px;
-    height: 36px;
-    width: 36px;
-    background-color: $red;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     z-index: 2;
     opacity: 0;
+    display: flex;
     transition: opacity 0.5s ease-in-out;
-    svg {
-      width: 14px;
-      height: 14px;
+    .control {
+      height: 32px;
+      width: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      svg {
+        width: 12px;
+        height: 12px;
+      }
+      &:not(:last-child) {
+        margin-right: 6px;
+      }
+    }
+    .edit {
+      background-color: $teal;
+    }
+    .delete {
+      background-color: $red;
     }
   }
   .vehicle__image {

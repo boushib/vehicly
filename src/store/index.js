@@ -10,6 +10,7 @@ export default new Vuex.Store({
   state: {
     isLoading: false,
     vehicles: [],
+    vehicle: null,
     myVehicles: []
   },
   mutations: {
@@ -18,6 +19,9 @@ export default new Vuex.Store({
     },
     setVehicles(state, vehicles) {
       state.vehicles = vehicles
+    },
+    setVehicle(state, vehicle) {
+      state.vehicle = vehicle
     },
     setMyVehicles(state, vehicles) {
       state.myVehicles = vehicles
@@ -30,6 +34,13 @@ export default new Vuex.Store({
       commit('setIsLoading', false)
       commit('setVehicles', vehicles)
     },
+    async getListing({ commit }, id) {
+      commit('setIsLoading', true)
+      const { data: vehicle } = await api.get(`/vehicles/${id}`)
+      commit('setIsLoading', false)
+      commit('setVehicle', vehicle)
+      return vehicle
+    },
     async getMyListings({ commit }) {
       commit('setIsLoading', true)
       //const { data: vehicles } = await api.get('/my-vehicles')
@@ -41,6 +52,16 @@ export default new Vuex.Store({
       try {
         commit('setIsLoading', true)
         await api.post('/vehicles', vehicle)
+        commit('setIsLoading', false)
+        router.push('/')
+      } catch (err) {
+        console.log(err.response)
+      }
+    },
+    async updateListing({ commit }, vehicle) {
+      try {
+        commit('setIsLoading', true)
+        await api.put(`/vehicles/${vehicle.id}`, vehicle)
         commit('setIsLoading', false)
         router.push('/')
       } catch (err) {

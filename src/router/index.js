@@ -2,7 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Listings from '@/views/Listings.vue'
 import MyListings from '@/views/MyListings.vue'
-import AddVehicle from '@/views/AddVehicle.vue'
+import AddListing from '@/views/AddListing.vue'
+import EditListing from '@/views/EditListing.vue'
 import Login from '@/views/Login.vue'
 
 Vue.use(VueRouter)
@@ -25,9 +26,15 @@ const routes = [
     component: MyListings
   },
   {
-    path: '/add-vehicle',
-    name: 'add_vehicle',
-    component: AddVehicle,
+    path: '/listings/add',
+    name: 'add_listing',
+    component: AddListing,
+    beforeEnter: (to, from, next) => guard(to, from, next)
+  },
+  {
+    path: '/listings/:id/edit',
+    name: 'edit_listing',
+    component: EditListing,
     beforeEnter: (to, from, next) => guard(to, from, next)
   },
   {

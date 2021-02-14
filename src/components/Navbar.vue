@@ -10,7 +10,7 @@
               >My Listings</router-link
             >
           </li> -->
-          <li><router-link to="/add-vehicle">Add Vehicle</router-link></li>
+          <li><router-link to="/listings/add">Add Vehicle</router-link></li>
           <!-- <li><router-link to="/search">Search</router-link></li> -->
         </ul>
         <div class="user" v-if="isAuth">

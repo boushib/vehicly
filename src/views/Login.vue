@@ -1,23 +1,25 @@
 <template>
   <div class="login page">
     <div class="container">
-      <h1>Login</h1>
-      <form action="" @submit.prevent="login">
-        <input
-          type="text"
-          placeholder="Enter username"
-          v-model="username"
-          required
-        />
-        <input
-          type="password"
-          placeholder="Enter password"
-          v-model="password"
-          required
-        />
-        <button class="btn">Login</button>
-        <div class="error" v-if="error">{{ error }}</div>
-      </form>
+      <div class="form-card">
+        <h1>Login</h1>
+        <form action="" @submit.prevent="login">
+          <input
+            type="text"
+            placeholder="Enter username"
+            v-model="username"
+            required
+          />
+          <input
+            type="password"
+            placeholder="Enter password"
+            v-model="password"
+            required
+          />
+          <button class="btn">Login</button>
+          <div class="error" v-if="error">{{ error }}</div>
+        </form>
+      </div>
     </div>
   </div>
 </template>
@@ -46,3 +48,11 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>

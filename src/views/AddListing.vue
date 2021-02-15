@@ -111,3 +111,11 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+.add-listing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>

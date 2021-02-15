@@ -14,12 +14,16 @@ input {
     background-color: #fff;
     border: 1px solid #dfdfdf;
     font-size: 16px;
+    height: 46px;
     &::placeholder {
       color: #aaa;
     }
     &:focus {
       border-color: #ccc;
     }
+  }
+  &[type='file'] {
+    padding: 10px 20px;
   }
 }
 
@@ -38,9 +42,6 @@ select {
   -webkit-appearance: none; /* Safari and Chrome */
   appearance: none;
   cursor: pointer;
-  [disabled] {
-    color: #aaa;
-  }
 }
 
 .select {
@@ -54,6 +55,10 @@ select {
     width: 0;
     border: 6px solid transparent;
     border-top-color: #a9a9a9;
+  }
+  &.disabled {
+    // color: #aaa;
+    opacity: 0.6;
   }
 }
 

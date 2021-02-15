@@ -5,18 +5,26 @@
       <form @submit.prevent="addListing">
         <div class="grid">
           <div class="col">
-            <input
-              type="text"
-              placeholder="Make"
-              v-model="vehicle.make"
-              required
-            />
-            <input
-              type="text"
-              placeholder="Model"
-              v-model="vehicle.model"
-              required
-            />
+            <div class="select">
+              <select v-model="vehicle.make" required>
+                <option disabled value="">Select Make</option>
+                <option :value="make" v-for="make in makes" :key="make">
+                  {{ make }}
+                </option>
+              </select>
+            </div>
+            <div class="select" :class="{ disabled: models.length === 0 }">
+              <select
+                v-model="vehicle.model"
+                :disabled="models.length === 0"
+                required
+              >
+                <option disabled value="">Select Model</option>
+                <option :value="model" v-for="model in models" :key="model">
+                  {{ model }}
+                </option>
+              </select>
+            </div>
             <div class="select">
               <select v-model="vehicle.fuel" required>
                 <option disabled value="">Select fuel</option>
@@ -81,12 +89,13 @@
 
 <script>
 import { mapState } from 'vuex'
+import { vehicleMakes, vehicleModels } from '@/data/vehicles'
 export default {
   data() {
     return {
       vehicle: {
-        make: null,
-        model: null,
+        make: '',
+        model: '',
         fuel: '',
         year: null,
         price: null,
@@ -101,6 +110,12 @@ export default {
   },
   computed: {
     ...mapState(['isLoading']),
+    makes() {
+      return vehicleMakes
+    },
+    models() {
+      return vehicleModels[this.vehicle.make.toLowerCase()] || []
+    },
   },
   methods: {
     async addListing() {

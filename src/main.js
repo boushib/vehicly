@@ -2,17 +2,18 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import VueMeta from 'vue-meta'
 
 // styles
 import './assets/scss/app.scss'
 
 Vue.config.productionTip = false
 
+Vue.use(VueMeta, { refreshOnceOnNavigation: true })
+
 Vue.filter('timeAgo', function(ts) {
   const now = new Date()
-  const seconds = Math.ceil(
-    (now - new Date(ts) + now.getTimezoneOffset() * 60 * 1000) / 1000
-  )
+  const seconds = Math.ceil((now - new Date(ts) + now.getTimezoneOffset() * 60 * 1000) / 1000)
   const minute = 60
   const hour = 60 * minute
   const day = 24 * hour

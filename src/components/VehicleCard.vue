@@ -2,6 +2,13 @@
   <div class="vehicle__card">
     <!-- TODO: make it possible onlt to delete their own listings -->
     <div class="controls" v-if="isAuth">
+      <a
+        class="control whatsapp"
+        target="_blank"
+        :href="`https://wa.me/${vehicle.phone.replace('+', '')}`"
+      >
+        <whatsapp-icon />
+      </a>
       <div class="control edit" @click="editListing">
         <edit-icon />
       </div>
@@ -49,6 +56,7 @@ import GearIcon from '@/components/icons/Gear.vue'
 import LocationIcon from '@/components/icons/Location.vue'
 import PowerIcon from '@/components/icons/Power.vue'
 import TimeIcon from '@/components/icons/Time.vue'
+import WhatsappIcon from '@/components/icons/Whatsapp.vue'
 import EditIcon from '@/components/icons/Edit.vue'
 import DeleteIcon from '@/components/icons/Delete.vue'
 export default {
@@ -59,6 +67,7 @@ export default {
     LocationIcon,
     PowerIcon,
     TimeIcon,
+    WhatsappIcon,
     EditIcon,
     DeleteIcon,
   },
@@ -105,6 +114,12 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
+      &.whatsapp {
+        svg {
+          width: 32px;
+          height: 32px;
+        }
+      }
       svg {
         width: 12px;
         height: 12px;

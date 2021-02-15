@@ -17,7 +17,7 @@
             required
           />
           <button class="btn">Login</button>
-          <div class="error" v-if="error">{{ error }}</div>
+          <form-error :message="error" />
         </form>
       </div>
     </div>
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import FormError from '@/components/FormError.vue'
 export default {
   data() {
     return {
@@ -32,6 +33,9 @@ export default {
       password: null,
       error: null,
     }
+  },
+  components: {
+    FormError,
   },
   methods: {
     async login() {

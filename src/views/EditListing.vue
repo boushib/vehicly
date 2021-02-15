@@ -138,7 +138,6 @@ export default {
   async created() {
     const { id } = this.$route.params
     const vehicle = await this.$store.dispatch('getListing', id)
-    console.log(vehicle)
     this.vehicle = { ...vehicle }
   },
 }

@@ -55,6 +55,7 @@ export default new Vuex.Store({
         commit('setIsLoading', false)
         router.push('/')
       } catch (err) {
+        commit('setIsLoading', false)
         console.log(err.response)
       }
     },

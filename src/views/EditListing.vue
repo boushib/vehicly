@@ -5,18 +5,30 @@
       <form @submit.prevent="updateListing">
         <div class="grid">
           <div class="col">
-            <input
-              type="text"
-              placeholder="Make"
-              v-model="vehicle.make"
-              required
-            />
-            <input
-              type="text"
-              placeholder="Model"
-              v-model="vehicle.model"
-              required
-            />
+            <div class="select">
+              <select
+                v-model="vehicle.make"
+                required
+                @change="vehicle.model = ''"
+              >
+                <option disabled value="">Select Make</option>
+                <option :value="make" v-for="make in makes" :key="make">
+                  {{ make }}
+                </option>
+              </select>
+            </div>
+            <div class="select" :class="{ disabled: models.length === 0 }">
+              <select
+                v-model="vehicle.model"
+                :disabled="models.length === 0"
+                required
+              >
+                <option disabled value="">Select Model</option>
+                <option :value="model" v-for="model in models" :key="model">
+                  {{ model }}
+                </option>
+              </select>
+            </div>
             <div class="select">
               <select v-model="vehicle.fuel" required>
                 <option disabled value="">Select fuel</option>
@@ -38,7 +50,11 @@
             />
           </div>
           <div class="col">
-            <input type="file" @change="imageFile = $event.target.files[0]" />
+            <div class="file-input">
+              <file-upload-icon />
+              <span> {{ imageFile ? imageFile.name : 'Select image' }}</span>
+              <input type="file" @change="handleFileChange" />
+            </div>
             <input
               type="text"
               placeholder="Location"
@@ -77,12 +93,14 @@
 
 <script>
 import { mapState } from 'vuex'
+import { vehicleMakes, vehicleModels } from '@/data/vehicles'
+import FileUploadIcon from '@/components/icons/FileUpload.vue'
 export default {
   data() {
     return {
       vehicle: {
-        make: null,
-        model: null,
+        make: '',
+        model: '',
         fuel: '',
         year: null,
         price: null,
@@ -95,14 +113,26 @@ export default {
       imageFile: null,
     }
   },
+  components: {
+    FileUploadIcon,
+  },
   computed: {
     ...mapState(['isLoading']),
+    makes() {
+      return vehicleMakes
+    },
+    models() {
+      return vehicleModels[this.vehicle.make.toLowerCase()] || ['']
+    },
   },
   methods: {
     async updateListing() {
       //const imageURL = await this.$store.dispatch('uploadFile', this.imageFile)
       //this.vehicle.imageURL = imageURL
       this.$store.dispatch('updateListing', this.vehicle)
+    },
+    handleFileChange(e) {
+      this.imageFile = e.target.files[0]
     },
   },
   async created() {

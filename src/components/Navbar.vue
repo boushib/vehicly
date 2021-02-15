@@ -11,7 +11,6 @@
             >
           </li> -->
           <li><router-link to="/listings/add">Add Vehicle</router-link></li>
-          <!-- <li><router-link to="/search">Search</router-link></li> -->
         </ul>
         <div class="user" v-if="isAuth">
           <div class="username">
@@ -72,6 +71,9 @@ nav {
   .main-menu {
     list-style-type: none;
     display: flex;
+    li {
+      cursor: pointer;
+    }
     a {
       padding: 19px;
       font-size: 16px;

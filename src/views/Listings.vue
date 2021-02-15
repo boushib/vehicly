@@ -3,12 +3,18 @@
     <div class="container">
       <div class="loading" v-if="isLoading">Loading...</div>
       <template v-else>
-        <vehicle-card
-          v-for="vehicle in vehicles"
-          :vehicle="vehicle"
-          :isAuth="isAuth"
-          :key="vehicle.id"
-        />
+        <template v-if="vehicles.length">
+          <vehicle-card
+            v-for="vehicle in vehicles"
+            :vehicle="vehicle"
+            :isAuth="isAuth"
+            :key="vehicle.id"
+          />
+        </template>
+        <div class="empty">
+          No vehicles yet!
+          <router-link to="/listings/add">Add vehicle?</router-link>
+        </div>
       </template>
     </div>
   </div>

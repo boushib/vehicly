@@ -38,6 +38,18 @@ b {
   padding: 40px 0;
 }
 
+.loading {
+  text-align: center;
+  font-size: 18px;
+  padding: 24px;
+}
+
+.empty {
+  font-size: 17px;
+  text-align: center;
+  padding: 24px;
+}
+
 .error {
   color: #f44336;
   margin: 20px 0;

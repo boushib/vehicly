@@ -11,7 +11,7 @@
             :key="vehicle.id"
           />
         </template>
-        <div class="empty">
+        <div class="empty" v-else>
           No vehicles yet!
           <router-link to="/listings/add">Add vehicle?</router-link>
         </div>

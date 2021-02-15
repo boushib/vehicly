@@ -10,12 +10,18 @@
             v-model="username"
             required
           />
-          <input
-            type="password"
-            placeholder="Enter password"
-            v-model="password"
-            required
-          />
+          <div class="password-input">
+            <div class="icon" @click="togglePassword">
+              <visibility-off v-if="showPassword" />
+              <visibility v-else />
+            </div>
+            <input
+              type="password"
+              placeholder="Enter password"
+              v-model="password"
+              required
+            />
+          </div>
           <button class="btn">Login</button>
           <form-error :message="error" />
         </form>
@@ -26,16 +32,21 @@
 
 <script>
 import FormError from '@/components/FormError.vue'
+import Visibility from '@/components/icons/Visibility.vue'
+import VisibilityOff from '@/components/icons/VisibilityOff.vue'
 export default {
   data() {
     return {
       username: null,
       password: null,
       error: null,
+      showPassword: false,
     }
   },
   components: {
     FormError,
+    Visibility,
+    VisibilityOff,
   },
   methods: {
     async login() {
@@ -48,6 +59,11 @@ export default {
       if (error) {
         this.error = error
       }
+    },
+    togglePassword(e) {
+      const input = e.currentTarget.nextElementSibling
+      this.showPassword = !this.showPassword
+      input.type = this.showPassword ? 'text' : 'password'
     },
   },
 }

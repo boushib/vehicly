@@ -62,6 +62,22 @@ select {
   }
 }
 
+.password-input {
+  position: relative;
+  svg {
+    display: block;
+    position: absolute;
+    right: 11px;
+    top: 11px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    path:not(:first-child) {
+      fill: #aaa;
+    }
+  }
+}
+
 .file-input {
   height: 46px;
   border: 1px solid #dfdfdf;

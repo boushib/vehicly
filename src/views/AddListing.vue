@@ -6,7 +6,11 @@
         <div class="grid">
           <div class="col">
             <div class="select">
-              <select v-model="vehicle.make" required>
+              <select
+                v-model="vehicle.make"
+                required
+                @change="vehicle.model = ''"
+              >
                 <option disabled value="">Select Make</option>
                 <option :value="make" v-for="make in makes" :key="make">
                   {{ make }}
@@ -114,7 +118,7 @@ export default {
       return vehicleMakes
     },
     models() {
-      return vehicleModels[this.vehicle.make.toLowerCase()] || []
+      return vehicleModels[this.vehicle.make.toLowerCase()] || ['']
     },
   },
   methods: {

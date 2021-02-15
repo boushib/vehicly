@@ -50,11 +50,11 @@
             />
           </div>
           <div class="col">
-            <input
-              type="file"
-              @change="imageFile = $event.target.files[0]"
-              required
-            />
+            <div class="file-input">
+              <file-upload-icon />
+              <span> {{ imageFile ? imageFile.name : 'Select image' }}</span>
+              <input type="file" @change="handleFileChange" required />
+            </div>
             <input
               type="text"
               placeholder="Location"
@@ -94,6 +94,7 @@
 <script>
 import { mapState } from 'vuex'
 import { vehicleMakes, vehicleModels } from '@/data/vehicles'
+import FileUploadIcon from '@/components/icons/FileUpload.vue'
 export default {
   data() {
     return {
@@ -112,6 +113,9 @@ export default {
       imageFile: null,
     }
   },
+  components: {
+    FileUploadIcon,
+  },
   computed: {
     ...mapState(['isLoading']),
     makes() {
@@ -126,6 +130,9 @@ export default {
       const imageURL = await this.$store.dispatch('uploadFile', this.imageFile)
       this.vehicle.imageURL = imageURL
       this.$store.dispatch('addListing', this.vehicle)
+    },
+    handleFileChange(e) {
+      this.imageFile = e.target.files[0]
     },
   },
 }

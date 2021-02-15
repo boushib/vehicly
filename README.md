@@ -31,3 +31,9 @@ npm install
 ```bash
 npm run serve
 ```
+
+to use a specific port:
+
+```bash
+npm run serve -- --port PORT_NUMBER
+```

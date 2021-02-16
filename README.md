@@ -26,6 +26,13 @@ Backend: <https://github.com/boushib/vehiclesStoreAPI>
 npm install
 ```
 
+Create a `.env` file and add these 2 entries to it:
+
+```env
+VUE_APP_API_URI=http://localhost:5000/api/v1
+VUE_APP_GOOGLE_MAPS_API_KEY=[Google Maps API Key]
+```
+
 ### Run dev server
 
 ```bash

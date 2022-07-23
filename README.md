@@ -1,6 +1,6 @@
-# vehiclesStoreFrontend
+# Vehicly
 
-A vehicles online store project, for the **Web Services** class in my master degree at High Tech Rabat.
+This is the frontend for _Vehicly_, a vehicles online store.
 
 Backend: <https://github.com/boushib/vehiclesStoreAPI>
 
@@ -15,28 +15,27 @@ Backend: <https://github.com/boushib/vehiclesStoreAPI>
 
 - VSCode.
 - Postman.
-- pgAdmin
 - Docker
 
 ## Run dev environment
 
 ### Install packages
 
-```bash
-npm install
+```text
+yarn
 ```
 
-Create a `.env` file and add these 2 entries to it:
+Create a `.env` file in the project root directory and add these 2 entries to it:
 
-```env
+```text
 VUE_APP_API_URI=http://localhost:5000/api/v1
 VUE_APP_GOOGLE_MAPS_API_KEY=[Google Maps API Key]
 ```
 
 ### Run dev server
 
-```bash
-npm run serve
+```text
+yarn serve
 ```
 
 to use a specific port:
